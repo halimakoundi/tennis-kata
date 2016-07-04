@@ -1,5 +1,29 @@
 # tennis-kata
 
+Rules:
+
+* A tennis player must :
+	earn a minimum of 4 points to win a game.
+	play at least 6 games to win a set.
+	win no less than 2 sets (at times 3 sets) to close out a match.
+
+* For simplicity, the first player score is always announced first: 
+
+	Points Earned 0 = 0 Games Points or 'Love'
+	Points Earned 1 = 15 Game Points
+	Points Earned 2 = 30 Game Points
+	Points Earned 3 = 40 Game Points
+	Points Earned 4 = Game Over (2 Point Advantage Required)
+	
+The winner of a tennis game must win with a two point advantage. In other words, if the score is 40-0 and the player 1 wins the next point, the player 1 wins the game.
+
+Deuce is the terminology expressed when the score in the game is 40-40. To win the game when the score is deuce, a competitor must score two consecutive points (one immediately after the other) --- otherwise the score reverts back to deuce.
+The first competitor to score after the score is deuce is ahead by one point and now has what is termed in tennis as having the Advantage or 'Ad' for short.
+
+*Inputing the score:
+	In this exercise the input of the score will be done via the console. 
+	The program will prompt the user and ask for the name of the player who won the points.
+
 Scenario: Start of match
 
 Given 
