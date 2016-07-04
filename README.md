@@ -116,11 +116,16 @@ Scenario: Winning a match
 Given 
 * a 3-set match,
 * played between Player 1 and Player 2,
+* in the last game of the match,
+* where the first set score is 7-5,
+* and the second set score is 4-6,
+* and the last set score is 5-4,
+* and the game score is 40-15
 	
 When
 * Player 1 scores a point
 Then
-* the scoreboard should show:
+* the scoreboard should show the final score as:
 
 ```	
 Player   | 1 | 2 | 3 | Game
