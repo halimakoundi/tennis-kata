@@ -52,7 +52,6 @@
     <Compile Include="Src\IConsole.cs" />
     <Compile Include="Src\Player.cs" />
     <Compile Include="Src\ScoreBoard.cs" />
-    <Compile Include="Src\Set.cs" />
     <Compile Include="Src\Sets.cs" />
     <Compile Include="Src\TennisMatch.cs" />
     <Compile Include="Tests\ScoreBoardShould.cs" />
