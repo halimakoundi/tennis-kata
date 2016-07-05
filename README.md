@@ -29,12 +29,12 @@ The first competitor to score after the score is deuce is ahead by one point and
 Scenario: Start of match
 
 Given 
-* a 3-set game,
+* a 3-set match,
 * played between Player 1 and Player 2,
-* at the start of the game
+* at the start of the match
 
 When
-* the game is about to start
+* the match is about to start
 
 Then
 * the scoreboard should show:
