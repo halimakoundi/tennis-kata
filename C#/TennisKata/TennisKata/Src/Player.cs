@@ -9,6 +9,6 @@ namespace TennisKata
             this._name = name;
         }
 
-        public string Name() => _name;
+        public virtual string Name() => _name;
     }
 }

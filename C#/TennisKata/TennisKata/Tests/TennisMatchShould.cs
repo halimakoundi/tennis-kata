@@ -13,8 +13,8 @@ namespace TennisKata.Tests
         public void SetUp()
         {
             var console = Substitute.For<IConsole>();
-            _scoreBoard = Substitute.For<ScoreBoard>(console, null, null, null);
-            _tennisMatch = new TennisMatch(_scoreBoard);
+            _scoreBoard = Substitute.For<ScoreBoard>(console);
+            _tennisMatch = new TennisMatch(_scoreBoard, null, null, null, null);
         }
 
         [Test]
@@ -22,7 +22,7 @@ namespace TennisKata.Tests
         {
             _tennisMatch.DisplayScore();
 
-            _scoreBoard.Received().Display();
+            _scoreBoard.Received().Display( null, null, null, null);
         }
 
     }

@@ -8,17 +8,28 @@ namespace TennisKata.Tests
     {
         private readonly IConsole _console = Substitute.For<IConsole>();
         private ScoreBoard _scoreBoard;
+        private Player _player1;
+        private Player _player2;
+        private Sets _sets;
+        private Game _game;
+        private TennisMatch _match;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _player1 = new Player("Player 1");
+            _player2 = new Player("Player 2");
+            _sets = new Sets(new Set(_player1));
+            _game = new Game();
+            _scoreBoard = new ScoreBoard(_console);
+            _match = new TennisMatch(
+                _scoreBoard, _player1, _player2, _sets, _game);
+        }
 
         [Test]
-        public void BeginningMatchShouldShowNoScore()
+        public void StartOfMatchShouldShowInitialBoard()
         {
-            var player = new Player("Player 1");
-            var sets = new Sets();
-            var game = new Game();
-            _scoreBoard = new ScoreBoard(_console, player, game, sets);
-            var match = new TennisMatch(_scoreBoard);
-
-            match.DisplayScore();
+            _match.DisplayScore();
 
             Received.InOrder(() =>
             {

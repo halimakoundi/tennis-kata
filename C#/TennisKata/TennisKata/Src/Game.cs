@@ -2,7 +2,7 @@
 {
     public class Game
     {
-        public virtual string PlayerOneScore()
+        public virtual string ScoreFor(Player player)
         {
             throw new System.NotImplementedException();
         }
