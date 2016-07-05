@@ -5,9 +5,9 @@ Rules:
 http://www.tennistips.org/tennis-scoring.html
 
 * A tennis player must :
-	earn a minimum of 4 points to win a game.
-	play at least 6 games to win a set.
-	win no less than 2 sets (at times 3 sets) to close out a match.
+	- earn a minimum of 4 points to win a game.
+	- play at least 6 games to win a set.
+	- win no less than 2 sets (at times 3 sets) to close out a match.
 
 * For simplicity, the first player score is always announced first: 
 
