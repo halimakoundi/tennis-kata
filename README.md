@@ -11,11 +11,11 @@ http://www.tennistips.org/tennis-scoring.html
 
 * For simplicity, the first player score is always announced first: 
 
-	Points Earned 0 = 0 Games Points or 'Love'
-	Points Earned 1 = 15 Game Points
-	Points Earned 2 = 30 Game Points
-	Points Earned 3 = 40 Game Points
-	Points Earned 4 = Game Over (2 Point Advantage Required)
+	- Points Earned 0 = 0 Games Points or 'Love'
+	- Points Earned 1 = 15 Game Points
+	- Points Earned 2 = 30 Game Points
+	- Points Earned 3 = 40 Game Points
+	- Points Earned 4 = Game Over (2 Point Advantage Required)
 	
 The winner of a tennis game must win with a two point advantage. In other words, if the score is 40-0 and the player 1 wins the next point, the player 1 wins the game.
 
