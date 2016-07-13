@@ -20,7 +20,7 @@ namespace TennisKata.Tests
             _player1 = new Player("Player 1");
             _player2 = new Player("Player 2");
             _sets = new Sets(new Set(_player1));
-            _game = new Game();
+            _game = new Game(_player1, _player2);
             _scoreBoard = new ScoreBoard(_console);
             _match = new TennisMatch(
                 _scoreBoard, _player1, _player2, _sets, _game);

@@ -12,14 +12,11 @@ namespace TennisKata
             _scores.Add(player, 0);
         }
 
-        public virtual string ScoreFor(Player player)
-        {
-            throw new System.NotImplementedException();
-        }
+        public virtual string ScoreFor(Player player) => $"{_scores[player]}";
 
         public virtual void WinGame(Player player)
         {
-            throw new System.NotImplementedException();
+            _scores[player] += 1;
         }
     }
 }

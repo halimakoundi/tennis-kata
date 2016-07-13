@@ -17,6 +17,7 @@ namespace TennisKata.Tests
             _set1 = Substitute.For<Set>(_player1);
             _sets = new Sets(_set1);
         }
+
         [Test]
         public void ReturnScoresForPlayer()
         {

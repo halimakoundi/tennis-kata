@@ -22,7 +22,7 @@ namespace TennisKata.Tests
             _player2 = Substitute.For<Player>("Player 2");
             _set1 = Substitute.For<Set>(_player1);
             _sets = Substitute.For<Sets>(_set1);
-            _game = Substitute.For<Game>();
+            _game = Substitute.For<Game>(_player1,_player2);
             _scoreBoard = new ScoreBoard(_console);
         }
 

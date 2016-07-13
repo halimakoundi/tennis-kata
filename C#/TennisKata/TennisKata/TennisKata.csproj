@@ -55,7 +55,9 @@
     <Compile Include="Src\Set.cs" />
     <Compile Include="Src\Sets.cs" />
     <Compile Include="Src\TennisMatch.cs" />
+    <Compile Include="Tests\GameShould.cs" />
     <Compile Include="Tests\ScoreBoardShould.cs" />
+    <Compile Include="Tests\SetShould.cs" />
     <Compile Include="Tests\SetsShould.cs" />
     <Compile Include="Tests\TennisFeature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
