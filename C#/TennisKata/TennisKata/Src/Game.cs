@@ -33,23 +33,43 @@ namespace TennisKata
 
         public void RecordPointFor(Player player)
         {
-            if (IsGameAdvantage() && AdvantageFor(player))
-            {
-                OnGameHasBeenWon(player);
-            }
-            if (IsGameAdvantage() && !AdvantageFor(player))
+            IsAdvantageConfirmed(player);
+            if (AdvantageIsLostBy(player))
             {
                 SetGameBackToDeuce();
                 return;
             }
-            if (NormalGameFor(player))
+            AddPointFor(player);
+            IsGameWon(player);
+        }
+
+        private void IsAdvantageConfirmed(Player player)
+        {
+            if (IsGameAdvantage() && AdvantageFor(player))
             {
-                _points[player] += 1;
+                OnGameHasBeenWon(player);
             }
+        }
+
+        private void IsGameWon(Player player)
+        {
             if (_points[player] > 3 && PointDifferenceReached())
             {
                 OnGameHasBeenWon(player);
             }
+        }
+
+        private void AddPointFor(Player player)
+        {
+            if (NormalGameFor(player))
+            {
+                _points[player] += 1;
+            }
+        }
+
+        private bool AdvantageIsLostBy(Player player)
+        {
+            return IsGameAdvantage() && !AdvantageFor(player);
         }
 
         private bool PointDifferenceReached()
