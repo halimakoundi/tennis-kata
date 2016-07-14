@@ -70,5 +70,39 @@ namespace TennisKata.Tests
 
             Assert.That(score, Is.EqualTo("15"));
         }
+
+        [Test]
+        public void return_score_A_for_when_game_is_deuce_and_player1_win_point()
+        {
+            _game.WinsPoint(_player1);
+            _game.WinsPoint(_player2);
+            _game.WinsPoint(_player1);
+            _game.WinsPoint(_player2);
+            _game.WinsPoint(_player1);
+            _game.WinsPoint(_player2);
+            _game.WinsPoint(_player1);
+
+            var score = _game.ScoreFor(_player1);
+
+            Assert.That(score, Is.EqualTo("A"));
+        }
+
+        [Test]
+        public void return_score_40_for_when_game_is_advantage_player1_and_player2_wins_point()
+        {
+            _game.WinsPoint(_player1); //15-0
+            _game.WinsPoint(_player2); //15-15
+            _game.WinsPoint(_player1); //30-15
+            _game.WinsPoint(_player2); //30-30
+            _game.WinsPoint(_player1); //40-30
+            _game.WinsPoint(_player2); //40-40
+            _game.WinsPoint(_player1); //A-40
+            _game.WinsPoint(_player2); //40-40
+
+            var score = _game.ScoreFor(_player1);
+
+            Assert.That(score, Is.EqualTo("40"));
+        }
+
     }
 }
