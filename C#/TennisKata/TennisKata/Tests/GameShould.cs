@@ -29,7 +29,7 @@ namespace TennisKata.Tests
         [Test]
         public void increment_score_for_player_who_wins_first_point()
         {
-            _game.WinsPoint(_player1);
+            _game.RecordPointFor(_player1);
 
             var score = _game.ScoreFor(_player1);
 
@@ -40,8 +40,8 @@ namespace TennisKata.Tests
         [Test]
         public void return_score_30_for_player_who_scored_first_two_points()
         {
-            _game.WinsPoint(_player1);
-            _game.WinsPoint(_player1);
+            _game.RecordPointFor(_player1);
+            _game.RecordPointFor(_player1);
 
             var score = _game.ScoreFor(_player1);
 
@@ -51,9 +51,9 @@ namespace TennisKata.Tests
         [Test]
         public void return_score_40_for_player_who_scored_first_three_points()
         {
-            _game.WinsPoint(_player1);
-            _game.WinsPoint(_player1);
-            _game.WinsPoint(_player1);
+            _game.RecordPointFor(_player1);
+            _game.RecordPointFor(_player1);
+            _game.RecordPointFor(_player1);
 
             var score = _game.ScoreFor(_player1);
 
@@ -63,8 +63,8 @@ namespace TennisKata.Tests
         [Test]
         public void return_score_15_for_player2_who_scored_second_point()
         {
-            _game.WinsPoint(_player1);
-            _game.WinsPoint(_player2);
+            _game.RecordPointFor(_player1);
+            _game.RecordPointFor(_player2);
 
             var score = _game.ScoreFor(_player2);
 
@@ -74,13 +74,13 @@ namespace TennisKata.Tests
         [Test]
         public void return_score_A_for_when_game_is_deuce_and_player1_win_point()
         {
-            _game.WinsPoint(_player1);
-            _game.WinsPoint(_player2);
-            _game.WinsPoint(_player1);
-            _game.WinsPoint(_player2);
-            _game.WinsPoint(_player1);
-            _game.WinsPoint(_player2);
-            _game.WinsPoint(_player1);
+            _game.RecordPointFor(_player1);
+            _game.RecordPointFor(_player2);
+            _game.RecordPointFor(_player1);
+            _game.RecordPointFor(_player2);
+            _game.RecordPointFor(_player1);
+            _game.RecordPointFor(_player2);
+            _game.RecordPointFor(_player1);
 
             var score = _game.ScoreFor(_player1);
 
@@ -90,14 +90,14 @@ namespace TennisKata.Tests
         [Test]
         public void return_score_40_for_when_game_is_advantage_player1_and_player2_wins_point()
         {
-            _game.WinsPoint(_player1); //15-0
-            _game.WinsPoint(_player2); //15-15
-            _game.WinsPoint(_player1); //30-15
-            _game.WinsPoint(_player2); //30-30
-            _game.WinsPoint(_player1); //40-30
-            _game.WinsPoint(_player2); //40-40
-            _game.WinsPoint(_player1); //A-40
-            _game.WinsPoint(_player2); //40-40
+            _game.RecordPointFor(_player1); //15-0
+            _game.RecordPointFor(_player2); //15-15
+            _game.RecordPointFor(_player1); //30-15
+            _game.RecordPointFor(_player2); //30-30
+            _game.RecordPointFor(_player1); //40-30
+            _game.RecordPointFor(_player2); //40-40
+            _game.RecordPointFor(_player1); //A-40
+            _game.RecordPointFor(_player2); //40-40
 
             var score = _game.ScoreFor(_player1);
 
@@ -113,14 +113,14 @@ namespace TennisKata.Tests
                 Assert.That(e, Is.EqualTo(_player1));
                 raised = true;
             };
-            _game.WinsPoint(_player1); //15-0
-            _game.WinsPoint(_player2); //15-15
-            _game.WinsPoint(_player1); //30-15
-            _game.WinsPoint(_player2); //30-30
-            _game.WinsPoint(_player1); //40-30
-            _game.WinsPoint(_player2); //40-40
-            _game.WinsPoint(_player1); //A-40
-            _game.WinsPoint(_player1); //player 1 wins
+            _game.RecordPointFor(_player1); //15-0
+            _game.RecordPointFor(_player2); //15-15
+            _game.RecordPointFor(_player1); //30-15
+            _game.RecordPointFor(_player2); //30-30
+            _game.RecordPointFor(_player1); //40-30
+            _game.RecordPointFor(_player2); //40-40
+            _game.RecordPointFor(_player1); //A-40
+            _game.RecordPointFor(_player1); //player 1 wins
 
 
             Assert.AreEqual(true, raised);
@@ -135,12 +135,12 @@ namespace TennisKata.Tests
                 Assert.That(e, Is.EqualTo(_player1));
                 raised = true;
             };
-            _game.WinsPoint(_player1); //15-0
-            _game.WinsPoint(_player2); //15-15
-            _game.WinsPoint(_player1); //30-15
-            _game.WinsPoint(_player2); //30-30
-            _game.WinsPoint(_player1); //40-30
-            _game.WinsPoint(_player1); //player1 wins
+            _game.RecordPointFor(_player1); //15-0
+            _game.RecordPointFor(_player2); //15-15
+            _game.RecordPointFor(_player1); //30-15
+            _game.RecordPointFor(_player2); //30-30
+            _game.RecordPointFor(_player1); //40-30
+            _game.RecordPointFor(_player1); //player1 wins
 
 
             Assert.AreEqual(true, raised);
@@ -155,12 +155,12 @@ namespace TennisKata.Tests
                 Assert.That(e, Is.EqualTo(_player2));
                 raised = true;
             };
-            _game.WinsPoint(_player2); //0-15
-            _game.WinsPoint(_player1); //15-15
-            _game.WinsPoint(_player2); //15-30
-            _game.WinsPoint(_player1); //30-30
-            _game.WinsPoint(_player2); //30-40
-            _game.WinsPoint(_player2); //player2 wins
+            _game.RecordPointFor(_player2); //0-15
+            _game.RecordPointFor(_player1); //15-15
+            _game.RecordPointFor(_player2); //15-30
+            _game.RecordPointFor(_player1); //30-30
+            _game.RecordPointFor(_player2); //30-40
+            _game.RecordPointFor(_player2); //player2 wins
 
 
             Assert.AreEqual(true, raised);

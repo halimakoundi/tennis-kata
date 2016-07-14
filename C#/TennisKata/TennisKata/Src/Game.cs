@@ -31,7 +31,7 @@ namespace TennisKata
             return _pointSystem[_points[player]];
         }
 
-        public void WinsPoint(Player player)
+        public void RecordPointFor(Player player)
         {
             if (IsGameAdvantage() && AdvantageFor(player))
             {
@@ -46,10 +46,15 @@ namespace TennisKata
             {
                 _points[player] += 1;
             }
-            if (_points[player] > 3 && Math.Abs(_points.ElementAt(0).Value-_points.ElementAt(1).Value) >1)
+            if (_points[player] > 3 && PointDifferenceReached())
             {
                 OnGameHasBeenWon(player);
             }
+        }
+
+        private bool PointDifferenceReached()
+        {
+            return Math.Abs(_points.ElementAt(0).Value-_points.ElementAt(1).Value) >1;
         }
 
         private void SetGameBackToDeuce()
