@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace TennisKata
 {
@@ -14,7 +15,6 @@ namespace TennisKata
         public virtual void Display(Player player1, Player player2, Sets sets, Game game)
         {
             DisplayHeader();
-
             DisplayPlayerScore(player1, sets, game);
             DisplayPlayerScore(player2, sets, game);
         }
@@ -27,16 +27,13 @@ namespace TennisKata
 
         private void DisplayPlayerScore(Player player, Sets sets, Game game)
         {
-            _console.PrintLine($"{player.Name()} | {FormatSetsFor(player, sets)} | {game.ScoreFor(player)}");
+            _console.PrintLine($"{player.Name()} | {Format(sets.ScoresFor(player))} | {game.ScoreFor(player)}");
         }
 
-        private static string FormatSetsFor(Player player, Sets sets)
+        public static string Format(string[] scoresFor)
         {
-            var scoreForPlayer1 = string.Join(
-                " | ",
-                sets.ScoresFor(player)
-                    .Select(x => string.IsNullOrEmpty(x) ? " " : x));
-            return scoreForPlayer1;
+            var scores = scoresFor.Select(score => string.IsNullOrEmpty(score) ? " " : score);
+            return string.Join(" | ",scores);
         }
     }
 }

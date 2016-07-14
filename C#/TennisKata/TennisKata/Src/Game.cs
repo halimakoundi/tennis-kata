@@ -33,7 +33,7 @@ namespace TennisKata
 
         public void RecordPointFor(Player player)
         {
-            IsAdvantageConfirmed(player);
+            TriggerGameIsWonIfAdvantageConfirmed(player);
             if (AdvantageIsLostBy(player))
             {
                 SetGameBackToDeuce();
@@ -43,7 +43,7 @@ namespace TennisKata
             IsGameWon(player);
         }
 
-        private void IsAdvantageConfirmed(Player player)
+        private void TriggerGameIsWonIfAdvantageConfirmed(Player player)
         {
             if (IsGameAdvantage() && AdvantageFor(player))
             {
