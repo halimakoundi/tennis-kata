@@ -33,24 +33,52 @@ namespace TennisKata
 
         public void WinsPoint(Player player)
         {
-            if(IsGameAdvantage() )
+            if (IsGameAdvantage() && AdvantageFor(player))
             {
-                var keyCollection = new List<Player>(_points.Keys);
-                foreach (var pl in keyCollection)
-                {
-                    _points[pl] = 3;
-                }
+                OnGameHasBeenWon(player);
+            }
+            if (IsGameAdvantage() && !AdvantageFor(player))
+            {
+                SetGameBackToDeuce();
                 return;
             }
-            if (_points[player] < 4)
+            if (NormalGameFor(player))
             {
                 _points[player] += 1;
             }
         }
 
+        private void SetGameBackToDeuce()
+        {
+            var keyCollection = new List<Player>(_points.Keys);
+            foreach (var pl in keyCollection)
+            {
+                _points[pl] = 3;
+            }
+        }
+
+        private bool NormalGameFor(Player player)
+        {
+            return _points[player] < 4;
+        }
+
+        private bool AdvantageFor(Player player)
+        {
+            return _points[player] == 4;
+        }
+
         private bool IsGameAdvantage()
         {
             return _points.Any(x => x.Value == 4) && _points.Any(x => x.Value == 3);
+        }
+
+        public delegate void GameHasBeenWon(Player e);
+
+        public event GameHasBeenWon GameIsWon;
+
+        protected virtual void OnGameHasBeenWon(Player winner)
+        {
+            GameIsWon?.Invoke(winner);
         }
     }
 }

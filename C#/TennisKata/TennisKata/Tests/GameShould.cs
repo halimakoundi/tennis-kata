@@ -20,7 +20,7 @@ namespace TennisKata.Tests
         [Test]
         public void return_score_for_player()
         {
-            var score   = _game.ScoreFor(_player1);
+            var score = _game.ScoreFor(_player1);
 
             Assert.That(score, Is.EqualTo("0"));
         }
@@ -102,6 +102,28 @@ namespace TennisKata.Tests
             var score = _game.ScoreFor(_player1);
 
             Assert.That(score, Is.EqualTo("40"));
+        }
+
+        [Test]
+        public void trigger_event__for_when_game_is_advantage_player1_and_player1_wins_point()
+        {
+            bool raised = false;
+            _game.GameIsWon += (e) =>
+            {
+                Assert.That(e, Is.EqualTo(_player1));
+                raised = true;
+            };
+            _game.WinsPoint(_player1); //15-0
+            _game.WinsPoint(_player2); //15-15
+            _game.WinsPoint(_player1); //30-15
+            _game.WinsPoint(_player2); //30-30
+            _game.WinsPoint(_player1); //40-30
+            _game.WinsPoint(_player2); //40-40
+            _game.WinsPoint(_player1); //A-40
+            _game.WinsPoint(_player1); //player 1 wins
+
+
+            Assert.AreEqual(true, raised);
         }
 
     }
