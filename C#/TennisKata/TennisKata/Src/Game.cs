@@ -46,6 +46,10 @@ namespace TennisKata
             {
                 _points[player] += 1;
             }
+            if (_points[player] > 3 && Math.Abs(_points.ElementAt(0).Value-_points.ElementAt(1).Value) >1)
+            {
+                OnGameHasBeenWon(player);
+            }
         }
 
         private void SetGameBackToDeuce()

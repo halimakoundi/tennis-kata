@@ -126,5 +126,44 @@ namespace TennisKata.Tests
             Assert.AreEqual(true, raised);
         }
 
+        [Test]
+        public void trigger_win_event__for_when_player1_has_40_and_player2_less_than_40_points()
+        {
+            bool raised = false;
+            _game.GameIsWon += (e) =>
+            {
+                Assert.That(e, Is.EqualTo(_player1));
+                raised = true;
+            };
+            _game.WinsPoint(_player1); //15-0
+            _game.WinsPoint(_player2); //15-15
+            _game.WinsPoint(_player1); //30-15
+            _game.WinsPoint(_player2); //30-30
+            _game.WinsPoint(_player1); //40-30
+            _game.WinsPoint(_player1); //player1 wins
+
+
+            Assert.AreEqual(true, raised);
+        }
+
+        [Test]
+        public void trigger_win_event__for_when_player2_has_40_and_player1_less_than_40_points()
+        {
+            bool raised = false;
+            _game.GameIsWon += (e) =>
+            {
+                Assert.That(e, Is.EqualTo(_player2));
+                raised = true;
+            };
+            _game.WinsPoint(_player2); //0-15
+            _game.WinsPoint(_player1); //15-15
+            _game.WinsPoint(_player2); //15-30
+            _game.WinsPoint(_player1); //30-30
+            _game.WinsPoint(_player2); //30-40
+            _game.WinsPoint(_player2); //player2 wins
+
+
+            Assert.AreEqual(true, raised);
+        }
     }
 }
