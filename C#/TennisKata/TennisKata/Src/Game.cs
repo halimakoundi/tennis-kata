@@ -6,9 +6,6 @@ namespace TennisKata
 {
     public class Game
     {
-        private readonly Dictionary<Player, int> _points =
-                    new Dictionary<Player, int>();
-
         private readonly IDictionary<int, string> _pointSystem = new Dictionary<int, string>
         {
             {0, "0" },
