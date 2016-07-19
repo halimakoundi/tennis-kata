@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 
 namespace TennisKata
 {
     public class Game
     {
-        private readonly Dictionary<Player, string> _scores =
-                    new Dictionary<Player, string>();
-
         private readonly Dictionary<Player, int> _points =
                     new Dictionary<Player, int>();
+
         private readonly IDictionary<int, string> _pointSystem = new Dictionary<int, string>
         {
             {0, "0" },
@@ -20,15 +17,18 @@ namespace TennisKata
             {3, "40" },
             {4, "A" }
         };
+
+        private readonly List<Player> _players = new List<Player>();
+
         public Game(Player player1, Player player2)
         {
-            _points[player1] = 0;
-            _points[player2] = 0;
+            _players.Add(player1);
+            _players.Add(player2);
         }
 
         public virtual string ScoreFor(Player player)
         {
-            return _pointSystem[_points[player]];
+            return _pointSystem[_players.Find((gamePlayer => gamePlayer == player)).Points];
         }
 
         public void RecordPointFor(Player player)
@@ -53,7 +53,7 @@ namespace TennisKata
 
         private void IsGameWon(Player player)
         {
-            if (_points[player] > 3 && PointDifferenceReached())
+            if (player.Points > 3 && PointDifferenceReached())
             {
                 OnGameHasBeenWon(player);
             }
@@ -63,7 +63,7 @@ namespace TennisKata
         {
             if (NormalGameFor(player))
             {
-                _points[player] += 1;
+                player.Points += 1;
             }
         }
 
@@ -74,31 +74,30 @@ namespace TennisKata
 
         private bool PointDifferenceReached()
         {
-            return Math.Abs(_points.ElementAt(0).Value-_points.ElementAt(1).Value) >1;
+            return Math.Abs(_players[0].Points - _players[1].Points) >1;
         }
 
         private void SetGameBackToDeuce()
         {
-            var keyCollection = new List<Player>(_points.Keys);
-            foreach (var pl in keyCollection)
+            foreach (var player in _players)
             {
-                _points[pl] = 3;
+                player.Points = 3;
             }
         }
 
         private bool NormalGameFor(Player player)
         {
-            return _points[player] < 4;
+            return player.Points < 4;
         }
 
         private bool AdvantageFor(Player player)
         {
-            return _points[player] == 4;
+            return player.Points == 4;
         }
 
         private bool IsGameAdvantage()
         {
-            return _points.Any(x => x.Value == 4) && _points.Any(x => x.Value == 3);
+            return _players.Any(x => x.Points == 4) && _players.Any(x => x.Points == 3);
         }
 
         public delegate void GameHasBeenWon(Player e);
